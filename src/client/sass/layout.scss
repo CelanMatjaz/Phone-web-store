@@ -1,0 +1,44 @@
+nav.navbar{
+    height: 60px;
+    background-color: dodgerblue;
+    color: white;
+    box-shadow: rgb(199, 199, 199) 1px 0 1px;
+    position: sticky;
+    top: 0;
+
+    li{
+        display: inline;
+
+        a{
+            color: white;
+            text-decoration: none;
+            font-size: 26px;
+            padding: 13px;
+            display: inline-block;
+            border-bottom: 3px solid dodgerblue;
+            
+            &.active{
+                border-bottom: 3px solid rgba($color: #fff, $alpha: 1);
+            }
+        }
+    }
+}
+
+.right{
+    float: right;
+}
+
+.left{
+    float: left;
+}
+
+.loader>img{
+    margin: 0 auto;
+    width: 100px;
+    display: block;
+}
+
+.middle{
+    display: block;
+    margin: 0 auto;
+}
