@@ -13,13 +13,12 @@ import { loginMutation } from '../../queries/queries.auth';
 import { login } from '../../store/constants/constants.auth';
 
 const Login = props => {
-    const [email, setEmail] = useState('123');
-    const [password, setPassword] = useState('12345678');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
 
     const handleSubmit = async e => {
         e.preventDefault();
-        setError(null);
         const data = await props.loginMutation({
             variables: {
                 email: email,
@@ -33,8 +32,6 @@ const Login = props => {
             props.history.push('/');
         }
     }
-
-    console.log(props);
     												
     if(!props.isEmpty) return <Redirect to={'/'}/>;    
 

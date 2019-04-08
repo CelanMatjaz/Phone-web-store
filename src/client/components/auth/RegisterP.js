@@ -1,12 +1,17 @@
 import React from 'react';
 
+//Components
+import Message from '../layout/Message';
+
 const RegisterContainer = props => {
     const { email, password, passwordRepeat } = props.data;
-    const { handleChange: { setEmail, setPassword, setPasswordRepeat }, handleSubmit } = props;
+    const { handleChange: { setEmail, setPassword, setPasswordRepeat }, handleSubmit, error, message } = props;
     return (
         <div className="form form-auth">
             <form onSubmit={handleSubmit}>
-                <h1>Register</h1>
+                {error && <Message type="danger" message={error}/>}
+                {message && <Message type="success" message={message}/>}
+                <h1>Register</h1>                
                 <label htmlFor="email">Email</label> <br/>
                 <input 
                     type="email" 

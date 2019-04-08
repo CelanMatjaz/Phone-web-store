@@ -73,10 +73,11 @@ const OrderType = new GraphQLObjectType({
     })
 });
 
-const LoginResponseType = new GraphQLObjectType({
+const ResponseType = new GraphQLObjectType({
     name: 'LoginResponse',
     fields: () => ({
         token: { type: GraphQLString },
+        message: { type: GraphQLString },
         error: { type: GraphQLString }
     })
 })
@@ -109,7 +110,7 @@ const Mutation = new GraphQLObjectType({
     name: 'Mutation',
     fields: {
         login: {
-            type: LoginResponseType,
+            type: ResponseType,
             args: {
                 email: { type: GraphQLString },
                 password: { type: GraphQLString }
@@ -135,7 +136,7 @@ const Mutation = new GraphQLObjectType({
             }
         },
         register: {
-            type: GraphQLString,
+            type: ResponseType,
             args: {
                 email: { type: GraphQLString },
                 password: { type: GraphQLString },
@@ -154,11 +155,15 @@ const Mutation = new GraphQLObjectType({
                             password: bcrypt.hashSync(password, 10)
                         });
                         newUser.save();
-                        return 'New user registered';
+                        return {
+                            message: 'New user registered'
+                        };
                     }
 
                 }
-                return 'Error registering user';
+                return {
+                    error: 'Error registering user'
+                };
             }
         }
     }

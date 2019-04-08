@@ -42,3 +42,23 @@ nav.navbar{
     display: block;
     margin: 0 auto;
 }
+
+.message{
+    width: 100%;
+    padding: 10px;
+    color: white;
+    border: 4px solid black;
+    margin-bottom: 20px;
+    border-radius: 6px;
+
+    &.danger{
+        border-color: rgb(219, 32, 32);
+        background-color: rgb(247, 137, 137);
+    }
+    
+    //Todo add better colors
+    &.success{
+        border-color: rgb(6, 184, 6);
+        background-color: rgb(134, 223, 134);
+    }
+}

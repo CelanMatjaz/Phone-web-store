@@ -12,7 +12,7 @@ const Login = props => {
                 <h1>Login</h1>
                 {error && <Message type="danger" message={error}/>}
                 <label htmlFor="email">Email</label> <br/>
-                <input type="text" id="email" value={email} onChange={e => setEmail(e.target.value)} required/> <br/>
+                <input type="email" id="email" value={email} onChange={e => setEmail(e.target.value)} required/> <br/>
 
                 <label htmlFor="password">Password</label> <br/>
                 <input type="password" id="password" value={password} onChange={e => setPassword(e.target.value)} required /> <br/>
