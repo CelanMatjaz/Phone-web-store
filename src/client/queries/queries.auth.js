@@ -18,3 +18,9 @@ export const registerMutation = gql`
         }
     } 
 `
+
+export const loginCheck = gql`
+    query($token: String!){
+        LoginCheck(token: $token)
+    } 
+`

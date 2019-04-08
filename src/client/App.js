@@ -1,25 +1,21 @@
 import React from 'react';
 import { ApolloProvider } from 'react-apollo';
-
-//Routes
-import Routes from './Routes';
+import { Provider } from 'react-redux';
 
 //Apollo client
-import { client } from './ApolloClient';
+import client from './ApolloClient';
+import store from './store/store';
 
 //Components
-import Navbar from './components/layout/Navbar';
+import AppComponent from './components/AppComponent';
 
-const App = props => {    
+const App = props => {
     return (
-        <ApolloProvider client={client}>
-            <div>
-                <Navbar/>
-                <main className="container">
-                    <Routes/> 
-                </main>
-            </div>
-        </ApolloProvider>        
+        <Provider store={store}>
+            <ApolloProvider client={client}>
+                <AppComponent/>
+            </ApolloProvider> 	
+        </Provider>       
     )
 }
 

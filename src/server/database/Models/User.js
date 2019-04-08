@@ -13,6 +13,10 @@ const userSchema = new Schema({
     address: {
         type: Object,
         default: null
+    },
+    cartItems: {
+        type: Array,
+        default: []
     }
 });
 

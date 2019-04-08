@@ -6,7 +6,6 @@ import { NavLink as Link, withRouter } from 'react-router-dom';
 import { logout } from '../../store/constants/constants.auth';
 
 const SignedInLinks = props => {
-    console.log(props);
     return (
         <>
             <li><Link to="/cart">Cart</Link></li>

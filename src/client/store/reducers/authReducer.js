@@ -9,7 +9,8 @@ const initState = {
 const authReducer = (state = initState, action) => {
 	switch(action.type){
 		case constants.LOGIN:
-			let userInfo = jwt.decode(action.token);
+		case constants.LOGIN_CHECK_SUCCESS:
+			let userInfo = jwt.decode(action.token).data;
 			localStorage.setItem('token', action.token);
 			return {
 				...state,
@@ -17,12 +18,13 @@ const authReducer = (state = initState, action) => {
 				isEmpty: false
 			}
 		case constants.LOGOUT:
+		case constants.LOGIN_CHECK_FAILURE:
 			localStorage.removeItem('token');
 			return {
 				...state,
 				userInfo: {},
 				isEmpty: true
-			}	
+			}
 		default: 
 			return state;
 	}

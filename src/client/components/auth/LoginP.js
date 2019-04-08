@@ -9,15 +9,14 @@ const Login = props => {
     return (
         <div className="form form-auth">
             <form onSubmit={handleSubmit}>
-                <h1>Login</h1>
                 {error && <Message type="danger" message={error}/>}
+                <h1>Login</h1>
                 <label htmlFor="email">Email</label> <br/>
                 <input type="email" id="email" value={email} onChange={e => setEmail(e.target.value)} required/> <br/>
 
                 <label htmlFor="password">Password</label> <br/>
                 <input type="password" id="password" value={password} onChange={e => setPassword(e.target.value)} required /> <br/>
-                <button>Login</button> 
-
+                <button>Login</button>
             </form>
         </div>
     )

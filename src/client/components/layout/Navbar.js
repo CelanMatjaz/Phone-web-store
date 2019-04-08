@@ -7,7 +7,6 @@ import SignedInLinks from './SignedInLinks';
 import SignedOutLinks from './SignedOutLinks';
 
 const Navbar = props => {
-    console.log(props.isEmpty);
     return (
         <nav className="navbar">
             <div className="container">

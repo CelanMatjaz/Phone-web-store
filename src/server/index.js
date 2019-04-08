@@ -9,13 +9,9 @@ import schema from './database/schema/schema';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter as Router } from 'react-router-dom';
-import { Provider } from 'react-redux';
 
 //Main component import
 import  App from '../client/App';
-
-//Redux store import
-import store from '../shared/store';
 
 import { getUser } from './routes/middleware';
 
@@ -26,7 +22,9 @@ app.use(express.static('public'));
 app.use(express.static('images'));
 
 app.get('/users', (req, res) => {
-    User.find({}, (err, arr) => res.json(arr));
+    //User.deleteMany({}, () => {
+        User.find({}, (err, arr) => res.json(arr));
+    //})
 })
 
 app.use('/graphql', getUser);
@@ -43,11 +41,9 @@ app.listen(PORT);
 
 app.get('/*', (req, res) => {
     const markup = renderToString(
-        <Provider store={store}>
             <Router location={req.url} context={{}}>
                 <App/>
-            </Router>
-        </Provider>
+            </Router>   
     );
 
     res.send(`

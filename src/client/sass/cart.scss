@@ -1,0 +1,29 @@
+.cart{
+    background-color: white;
+    padding: 10px;
+
+    img{
+        height: 120px;
+        margin: 0 20px 0 0;
+    }
+}
+
+.cart-item{
+    width: 90%;
+    margin: 10px auto;
+    padding: 10px;
+    border: 1px solid lightgray;
+
+    button{
+        padding: 0;
+        text-align: center;
+        line-height: 30px;
+        width: 30px;
+        height: 30px;
+        font-size: 16px;
+    }
+
+    &>div{
+        display: inline-block;
+    }
+}
