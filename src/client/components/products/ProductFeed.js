@@ -30,7 +30,6 @@ const ProductFeed = props => {
                                 data={product} 
                                 addToCart={addToCart}
                                 inCart={data.User ? Boolean(data.User.cartItems.find(item => item.id === product.id)) : false}
-                                refetch={refetch}
                             />
                         });              
                     }}
