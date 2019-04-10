@@ -1,6 +1,10 @@
 .cart{
     background-color: white;
-    padding: 10px;
+    padding: 20px 10%;
+    
+    button{
+        margin: 0 10px 0 0;
+    }
 
     img{
         height: 120px;
@@ -9,18 +13,24 @@
 }
 
 .cart-item{
-    width: 90%;
-    margin: 10px auto;
+    margin: 10px 0;
     padding: 10px;
     border: 1px solid lightgray;
+    border-radius: 3px;
+
+    span{
+        font-size: 24px;
+        margin: 0 4px;
+        line-height: 24px;
+        display: inline-block;
+        position: relative;
+        top: 2px;
+    }
 
     button{
-        padding: 0;
-        text-align: center;
-        line-height: 30px;
-        width: 30px;
-        height: 30px;
+        padding: 4px 10px;
         font-size: 16px;
+        margin: 0;
     }
 
     &>div{

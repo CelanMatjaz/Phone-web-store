@@ -252,12 +252,12 @@ const Mutation = new GraphQLObjectType({
             type: ResponseType,
             args: { userId: { type: GraphQLID }, itemId: { type: GraphQLID } },
             resolve: async (parent, args) => {
+                console.log(args);
                 const { userId, itemId } = args;
                 if(userId && itemId){
                     const user = await User.findById(userId);
                     const updatedCartItems = user.cartItems.filter(item => item.id !== itemId);
-                    user.cartItems = updatedCartItems;
-                    User.findByIdAndUpdate(userId, user);
+                    await User.findByIdAndUpdate({ _id: userId }, { cartItems: updatedCartItems });
                     return {
                         message: 'Removed item from cart'
                     }
@@ -271,7 +271,6 @@ const Mutation = new GraphQLObjectType({
             type: ResponseType,
             args: { userId: { type: GraphQLID }, itemId: { type: GraphQLID } },
             resolve: async (parent, args) => {
-                console.log(args);
                 const { userId, itemId } = args;
                 if(userId && itemId){
                     const user = await User.findById(userId);
@@ -279,7 +278,7 @@ const Mutation = new GraphQLObjectType({
                         if(item.id === itemId) item.cartQuantity++;
                         return item;
                     });
-                    User.findOneAndUpdate({ id: userId }, { cartItems: updatedCartItems });
+                    await User.findByIdAndUpdate({ _id: userId }, { cartItems: updatedCartItems });
                     return {
                         message: 'Item quantity was incremented'
                     }
@@ -302,7 +301,7 @@ const Mutation = new GraphQLObjectType({
                         return item;
                     });
                     updatedCartItems = updatedCartItems.filter(item => item);
-                    User.findByIdAndUpdate(userId, { cartItems: updatedCartItems });
+                    await User.findByIdAndUpdate({ _id: userId }, { cartItems: updatedCartItems });
                     return {
                         message: 'Item quantity was decremented'
                     }
@@ -317,10 +316,8 @@ const Mutation = new GraphQLObjectType({
             args: { userId: { type: GraphQLID } },
             resolve: async (parent, args) => {
                 const { userId } = args;
-                if(userId){
-                    const user = await User.findById(userId);
-                    user.cartItems = [];
-                    User.findByIdAndUpdate(userId, user);                    
+                if(userId){ 
+                    await User.findByIdAndUpdate({ _id: userId }, { cartItems: [] });                    
                     return {
                         message: 'Cart was cleared'
                     }
@@ -329,7 +326,14 @@ const Mutation = new GraphQLObjectType({
                     error: 'Cart was not cleared'
                 }
             }
-        }
+        },
+        /*placeOrder: {
+            type: ResponseType,
+            args: { userId: { type: GraphQLID }, items: { type: new GraphQLList(CartItemType) } },
+            resolve: async (parent, args) => {
+                console.log(args);
+            }
+        }*/
     }
 });
 

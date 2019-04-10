@@ -30,19 +30,30 @@ const CartItem = ({
         }
     }
 
+    const handleRemoveFromCart = async () => {
+        removeItemFromCart({
+            variables: {
+                userId, 
+                itemId: id
+            }
+        });
+        refetch();
+    }
+
     return (
         <div className="cart-item">
             <div><img src={`/${image}.png`}/></div>
             <div>
-                <small>{make}</small> {name} <br/>
+                <b>{make}</b> {name} <br/>
                 Available: {quantity} <br/>
 
                 Price: 24 x <b>{price}€</b> <br/>
 
-                In cart: 
-                <button onClick={() => handleIncrement()}>+</button>
-                {cartQuantity}
+                In cart: <br/>
                 <button onClick={() => handleDecrement()}>-</button>
+                <span>{cartQuantity}</span>
+                <button onClick={() => handleIncrement()}>+</button> <br/> <br/>
+                <button onClick={() => handleRemoveFromCart()}>Remove from cart</button>
             </div>
         </div>
     );

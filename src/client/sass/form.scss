@@ -53,4 +53,8 @@ button{
     &:active{
         background-color: lighten($color: dodgerblue, $amount: 10);
     }
+
+    &:disabled{
+        background-color: grey;
+    }
 }

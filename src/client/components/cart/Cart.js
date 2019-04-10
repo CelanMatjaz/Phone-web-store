@@ -18,23 +18,47 @@ import {
 
 const Cart = props => {
     const { getCartItems, removeItemFromCart, incrementItemInCart, decrementItemInCart, clearCart, id } = props;
-    const { error, loading, User, refetch } = getCartItems;
+    const { loading, User, refetch } = getCartItems;
     useEffect(() => {
         refetch();
-    }, [User]);
+    }, [User]);   
 
     if(props.isEmpty) return <Redirect to="/login"/>
     if(loading) return <Loader/>
-    if(User.cartItems.length === 0) return <h5>There are no items in your cart</h5>
+
+    const clear = async () => {
+        await clearCart({
+            variables: {
+                userId: id
+            }
+        });
+        refetch();
+    }    
+
+    const order = async () => {
+        
+    }
+
     return (
         <div className="cart">
-            <h3>There is no functionality yet!</h3>
-            {User.cartItems.map(item => <CartItem
+            {   
+                User.cartItems.length === 0 ? 
+                <h3>There are no items in your cart</h3> : 
+                (
+                    <>
+                        <button onClick={() => order()}>Place order</button>
+                        <button onClick={() => clear()}>Clear cart</button>
+                    </>
+                )
+            }
+            {
+                User.cartItems.map(item => <CartItem
                 refetch={refetch}
                 userId={id} 
                 key={item.id} 
                 data={item} 
-                methods={{removeItemFromCart, incrementItemInCart, decrementItemInCart}}/>) || 'You have no items in your cart'}
+                methods={{removeItemFromCart, incrementItemInCart, decrementItemInCart}}/>) || 'You have no items in your cart'
+            }
         </div>
     );
 };
@@ -50,6 +74,7 @@ const queries = [
     graphql(incrementItemInCart, { name: 'incrementItemInCart' }),
     graphql(decrementItemInCart, { name: 'decrementItemInCart' }),
     graphql(clearCart, { name: 'clearCart' }),
+    //graphql(placeOrder, { name: 'placeOrder' }),
 ]
 
 export default connect(mapStateToProps)(compose(...queries)(Cart));
