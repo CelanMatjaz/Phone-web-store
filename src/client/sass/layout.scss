@@ -5,6 +5,7 @@ nav.navbar{
     box-shadow: rgb(199, 199, 199) 1px 0 1px;
     position: sticky;
     top: 0;
+    z-index: 10;
 
     li{
         display: inline;

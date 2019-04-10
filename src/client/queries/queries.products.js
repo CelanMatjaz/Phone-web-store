@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 
-export const getProducts = gql`
-    query($userId: ID!){
+export const getProductsAndCartItems = gql`
+    query($userId: ID){
         Products{
             id
             name
@@ -17,4 +17,3 @@ export const getProducts = gql`
         }
     }
 `;
-

@@ -2,9 +2,10 @@ import React from 'react';
 
 const Product = props => {
     const { name, price, quantity, make, image, id } = props.data;
-    const { inCart, refetch } = props;
+    const { inCart } = props;
     const disabled = !quantity >= 1 || inCart;
-    const text = inCart ? 'Already in cart' : quantity > 0 ? 'Add to cart' : 'Sold out';
+    const text = inCart ? 'In cart' : quantity > 0 ? 'Add to cart' : 'Sold out';
+
     return (
         <div className="card-product">
             <h3>{make}</h3>
@@ -15,10 +16,7 @@ const Product = props => {
             <button 
                 className="product-button" 
                 disabled={disabled} 
-                onClick={ async () => {
-                    await props.addToCart({ variables: { itemId: id }});
-                    refetch();
-                }}
+                onClick={() => props.addToCart(id)}
             >{text}</button>
         </div>
     );
